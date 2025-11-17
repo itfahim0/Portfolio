@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAHIM MUNTASIR - Personal Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            light: '#a5b4fc', // Indigo 300
+                            DEFAULT: '#6366f1', // Indigo 500
+                            dark: '#4f46e5',   // Indigo 600
+                        },
+                        secondary: {
+                            light: '#f0abfc', // Fuchsia 300
+                            DEFAULT: '#d946ef', // Fuchsia 500
+                            dark: '#c026d3',   // Fuchsia 600
+                        },
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Set the default font for the body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Gray 900 */
+            color: #f3f4f6; /* Gray 100 */
+        }
+
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Styles for the typing effect */
+        .typing-text {
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: bottom;
+            animation: typing 2.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #a5b4fc; } /* Indigo 300 */
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #a5b4fc; /* Indigo 300 */
+            margin-left: 4px;
+            animation: blink-caret .75s step-end infinite;
+            vertical-align: bottom;
+        }
+
+        /* Scroll-triggered animation classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+        }
+
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gradient text */
+        .text-gradient {
+            background: linear-gradient(to right, #a5b4fc, #f0abfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-inter">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-md shadow-lg">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Your Name -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-gradient">
+                        FAHIM MUNTASIR
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-white transition duration-300">About</a>
+                    <a href="#documents" class="text-gray-300 hover:text-white transition duration-300">Documents</a>
+                    <a href="#cv" class="text-gray-300 hover:text-white transition duration-300">CV</a>
+                    <a href="#contact" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md transition duration-300 font-medium">
+                        Contact Me
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900/95">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#documents" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Documents</a>
+                <a href="#cv" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">CV</a>
+                <a href="#contact" class="bg-primary hover:bg-primary-dark text-white block px-3 py-2 rounded-md text-base font-medium">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden text-center px-4">
+            <!-- Animated Background Shapes -->
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary-light rounded-full opacity-20 filter blur-xl animate-float"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary-light rounded-full opacity-20 filter blur-2xl animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-24 h-24 bg-primary rounded-full opacity-20 filter blur-xl animate-float" style="animation-delay: 4s;"></div>
+
+            <!-- Hero Content -->
+            <div class="z-10">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Hi, I'm <span id="typing-name" class="text-gradient">FAHIM MUNTASIR</span>
+                    <span id="typing-cursor" class="typing-cursor"></span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    I am a passionate FOREX Trader based in SAVAR. Welcome to my personal portfolio.
+                </p>
+                <div class="space-x-4">
+                    <a href="#documents" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-md text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="bg-gray-700/50 hover:bg-gray-700 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-24 bg-gray-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    About <span class="text-gradient">Me</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <!-- This line points to your local photo -->
+                        <img src="/assets/profile.jpg" 
+                             alt="A portrait photo of Fahim Muntasir"
+                             onerror="this.src='https://placehold.co/600x600/1f2937/a5b4fc?text=Your+Photo'; this.onerror=null;"
+                             class="rounded-lg shadow-2xl w-full max-w-md mx-auto">
+                    </div>
+                    <div class="text-lg text-gray-300 space-y-6">
+                        <p>
+                            Hello! I'm Fahim Muntasir, a creative and driven FOREX Trader with a deep passion for financial markets. I specialize in technical analysis and risk management, and I thrive on solving complex problems and creating beautiful, intuitive solutions.
+                        </p>
+                        <p>
+                            Over the past 5 years, I've had the pleasure of working on diverse projects, from developing trading strategies to backtesting models. My goal is to leverage my skills to build meaningful products that make a difference.
+                        </p>
+                        <h3 class="text-2xl font-semibold text-white pt-4">My Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <!-- Replace with your skills -->
+                            <span class="bg-primary/20 text-primary-light px-4 py-2 rounded-full font-medium">Technical Analysis</span>
+                            <span class="bg-primary/20 text-primary-light px-4 py-2 rounded-full font-medium">Risk Management</span>
+                            <span class="bg-secondary/20 text-secondary-light px-4 py-2 rounded-full font-medium">Market Psychology</span>
+                            <span class="bg-primary/20 text-primary-light px-4 py-2 rounded-full font-medium">Python (Pandas, NumPy)</span>
+                            <span class="bg-secondary/20 text-secondary-light px-4 py-2 rounded-full font-medium">MetaTrader 4/5</span>
+                            <span class="bg-primary/20 text-primary-light px-4 py-2 rounded-full font-medium">Algorithmic Trading</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents / Portfolio Section -->
+        <section id="documents" class="py-24 bg-gray-900">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    My <span class="text-gradient">Documents & Work</span>
+                </h2>
+                <p class="text-xl text-center text-gray-300 max-w-3xl mx-auto mb-16">
+                    Here are some of the projects I've worked on and documents I've prepared. Feel free to explore.
+                </p>
+                
+                <!-- Grid for Documents/Projects -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Document Card 1 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="https://placehold.co/600x400/1f2937/e2e8f0?text=Strategy+Backtest" 
+                             alt="Placeholder for Document 1"
+                             onerror="this.src='https://placehold.co/600x400/1f2937/e2e8f0?text=Preview+1'; this.onerror=null;"
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2 text-white">EUR/USD Backtest Report</h3>
+                            <p class="text-gray-300 mb-4">
+                                A comprehensive backtest of a mean-reversion strategy on the EUR/USD 1H chart from 2020-2023.
+                            </p>
+                            <a href="#" class="font-medium text-primary-light hover:text-primary transition duration-300">
+                                View Details &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document Card 2 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="https://placehold.co/600x400/1f2937/e2e8f0?text=Market+Analysis" 
+                             alt="Placeholder for Document 2"
+                             onerror="this.src='https://placehold.co/600x400/1f2937/e2e8f0?text=Preview+2'; this.onerror=null;"
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2 text-white">Weekly Market Analysis</h3>
+                            <p class="text-gray-300 mb-4">
+                                My weekly newsletter breaking down key price levels and economic events for major pairs.
+                            </p>
+                            <a href="#" class="font-medium text-primary-light hover:text-primary transition duration-300">
+                                View Details &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document Card 3 -->
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                        <img src="https://placehold.co/600x400/1f2937/e2e8f0?text=Trading+Journal" 
+                             alt="Placeholder for Document 3"
+                             onerror="this.src='https://placehold.co/600x400/1f2937/e2e8f0?text=Preview+3'; this.onerror=null;"
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2 text-white">Public Trading Journal</h3>
+                            <p class="text-gray-300 mb-4">
+                                An open-source trading journal template built with Google Sheets and AppScript.
+                            </g>
+                            <a href="#" class="font-medium text-primary-light hover:text-primary transition duration-300">
+                                View Details &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================== -->
+        <!-- ===== NEW CV SECTION (UPDATED) ===== -->
+        <!-- ================================== -->
+        <section id="cv" class="py-24 bg-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll text-left">
+                <h2 class="text-4xl font-bold text-center mb-16">
+                    My <span class="text-gradient">Curriculum Vitae</span>
+                </h2>
+
+                <!-- Professional Experience Section -->
+                <div class="mb-16">
+                    <h3 class="text-3xl font-semibold text-white mb-8 border-b-2 border-primary-light pb-2">Professional Experience</h3>
+                    
+                    <!-- CV Item 1: Replace with your info -->
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-primary-light">Proprietary Trader</h4>
+                        <p class="text-lg text-gray-300 mb-1">Self-Employed (Funded Accounts) | Savar, Dhaka</p>
+                        <p class="text-md text-gray-400 mb-3">Jan 2021 - Present</p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Manage a 6-figure funded trading account, focusing on major FX pairs and indices.</li>
+                            <li>Develop and execute trading strategies based on price action and SMC concepts.</li>
+                            <li>Consistently meet profit targets while adhering to strict daily and max drawdown rules.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- CV Item 2: Replace with your info -->
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-primary-light">Financial Market Analyst (Freelance)</h4>
+                        <p class="text-lg text-gray-300 mb-1">Upwork / Fiverr | Remote</p>
+                        <p class="text-md text-gray-400 mb-3">Jun 2019 - Dec 2020</p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Provided technical analysis and market commentary for private clients and trading groups.</li>
+                            <li>Created educational content (articles and videos) on trading psychology and risk management.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Add more CV items here if needed -->
+
+                </div>
+
+                <!-- Education Section -->
+                <div>
+                    <h3 class="text-3xl font-semibold text-white mb-8 border-b-2 border-secondary-light pb-2">Education & Certifications</h3>
+                    
+                    <!-- Education Item 1: Replace with your info -->
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-secondary-light">B.Sc. in Computer Science & Engineering</h4>
+                        <p class="text-lg text-gray-300 mb-1">Daffodil International University | Dhaka, Bangladesh</p>
+                        <p class="text-md text-gray-400 mb-3">Graduated May 2020</p>
+                        <p class="text-gray-300">
+                            Relevant Coursework: Data Structures & Algorithms, Python Programming, Database Management.
+                        </p>
+                    </div>
+
+                    <!-- Education Item 2: Replace with your info -->
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-secondary-light">Chartered Market Technician (CMT) Level 1</h4>
+                        <p class="text-lg text-gray-300 mb-1">CMT Association</p>
+                        <p class="text-md text-gray-400 mb-3">Issued 2021</p>
+                    </div>
+                    
+                    <!-- Add more education items here if needed -->
+                    
+                </div>
+            </div>
+        </section>
+        <!-- ================================== -->
+        <!-- ===== END OF NEW CV SECTION ====== -->
+        <!-- ================================== -->
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+                <h2 class="text-4xl font-bold text-center mb-6">
+                    Get In <span class="text-gradient">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-xl mx-auto mb-10">
+                    I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out!
+                </p>
+                
+                <!-- Contact Form -->
+                <form id="contact-form" class="max-w-xl mx-auto text-left">
+                    <div class="mb-5">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
+                        <input type="text" id="name" name="name" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Your Email</label>
+                        <input type="email" id="email" name="email" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@example.com" required>
+                    </div>
+                    <div class="mb-5">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Your Message</label>
+                        <textarea id="message" name="message" rows="4" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Your message..." required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" id="submit-button" class="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-md text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                    <!-- Form status message -->
+                    <div id="form-status" class="mt-6 text-center text-lg"></div>
+                </form>
+                
+                <!-- Social Media Links -->
+                <div class="mt-16">
+                    <p class="text-lg text-gray-400 mb-6">Find me on other platforms:</p>
+                    <div class="flex justify-center space-x-6">
+                        <!-- Replace "#" with your social links -->
+                        <a href="https://www.linkedin.com/in/itfahim/" class="text-gray-400 hover:text-white transform hover:scale-110 transition duration-300" title="LinkedIn">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.A75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/itfahim0" class="text-gray-400 hover:text-white transform hover:scale-110 transition duration-300" title="GitHub">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.8c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/itfaahim/" class="text-gray-400 hover:text-white transform hover:scale-110 transition duration-300" title="Facebook">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.12 8.44 9.93v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.85h2.74l-.44 2.9h-2.3v7.03C18.34 21.19 22 17.06 22 12.07z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-400">
+            <p>&copy; 2025 itfahim. All rights reserved. Built with determination and coffee.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations and Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            
+            // --- Mobile Menu Toggle ---
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Typing Animation ---
+            // This is a simplified effect. We'll set the text in CSS animation
+            // and just use JS to manage the cursor.
+            const nameElement = document.getElementById('typing-name');
+            const cursorElement = document.getElementById('typing-cursor');
+            
+            if (nameElement && cursorElement) {
+                // Set the text from the element's content
+                const text = nameElement.textContent;
+                
+                // --- THIS WAS THE BUGGY LINE --
+                // nameElement.textContent = ''; // <-- I have removed this line
+                
+                // Set CSS variables for animation
+                nameElement.style.setProperty('--typing-steps', text.length);
+                
+                // Add the animation class
+                nameElement.classList.add('typing-text');
+                
+                // Remove cursor after animation finishes
+                setTimeout(() => {
+                    cursorElement.style.display = 'none';
+                    // Ensure the text is fully visible and border is gone
+                    nameElement.style.width = 'auto';
+                    nameElement.style.borderRight = 'none';
+                    nameElement.style.animation = 'none';
+                }, 3000); // 2.5s for typing + 0.5s buffer
+            }
+
+            // --- Scroll-triggered Animations ---
+            const sections = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                root: null, // relative to the viewport
+                threshold: 0.1 // 10% of the element must be visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Contact Form Logic ---
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const formStatus = document.getElementById('form-status');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Prevent default form submission
+                    
+                    // Show loading state
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    formStatus.textContent = '';
+                    formStatus.classList.remove('text-green-400', 'text-red-400');
+
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    try {
+                        // Send data to the Node.js server
+                        const response = await fetch('/send-contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        if (response.ok) {
+                            // Success
+                            formStatus.textContent = 'Message sent successfully!';
+                            formStatus.classList.add('text-green-400'); // This was the corrected line
+                            contactForm.reset();
+                        } else {
+                            // Server error
+                            throw new Error('Server responded with an error.');
+                        }
+                    } catch (error) {
+                        // Network error or server error
+                        console.error('Form submission error:', error);
+                        formStatus.textContent = 'An error occurred. Please try again later.';
+                        formStatus.classList.add('text-red-400');
+                    } finally {
+                        // Reset button
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Message';
+                    }
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>
